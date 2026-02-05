@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-  // ===== MENU HAMBURGUER =====
+// menu
   const hamMenu = document.querySelector(".ham-menu");
   const offScreenMenu = document.querySelector(".offscreen-menu");
 
@@ -10,8 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
       offScreenMenu.classList.toggle("active");
     });
   }
-
-  // ===== SUBMENU SOLUÇÕES =====
+// submenu soluções
   const solucoesBtn = document.querySelector(".solucoes-btn");
   const solucoesSubmenu = document.querySelector(".solucoes-submenu");
 
@@ -20,8 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       solucoesSubmenu.classList.toggle("active");
     });
   }
-
-  // ===== DROPDOWN MOBILE =====
+// menu clicável para mobile
   const dropdownButton = document.querySelector(".dropdown-button");
   const dropdownContent = document.querySelector(".dropdown-content");
   const dropdownMenu = document.querySelector(".dropdown-menu");
@@ -45,27 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== NOTÍCIAS FACEBOOK =====
-  const container = document.getElementById('noticias');
-
-  if (container) {
-    fetch('/comunicativas/api/facebook-posts.php')
-      .then(r => r.json())
-      .then(posts => {
-        posts.forEach(post => {
-          const div = document.createElement('div');
-          div.innerHTML = `
-            ${post.full_picture ? `<img src="${post.full_picture}">` : ''}
-            <p>${post.message ?? '(Sem texto)'}</p>
-            <a href="${post.permalink_url}" target="_blank">Ver no Facebook</a>
-          `;
-          container.appendChild(div);
-        });
-      })
-      .catch(err => console.error(err));
-  }
-
-  // ===== ANIMAÇÃO DE TEXTO =====
+});  
+// animação de texto pagina inicial
   const wordElement = document.querySelector(".word-change");
 
   if (wordElement) {
@@ -92,5 +70,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     typeWord();
   }
-
-});
