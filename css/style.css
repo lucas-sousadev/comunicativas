@@ -84,7 +84,7 @@ header {
 }
 .dropdown-menu:hover .dropdown-content {
 	display: block;
-	max-height: 500px;
+	max-height: 480px;
 	animation: surgir 0.5s ease;
 }
 .dropdown-content.active {
