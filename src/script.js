@@ -72,3 +72,34 @@ function typeWord() {
 }
 
 typeWord();
+
+// carregamento da api pra buscar posts do facebook
+fetch('/api/facebook-posts.php')
+  .then(response => response.json())
+  .then(posts => {
+    const container = document.getElementById('facebook-posts');
+
+    posts.forEach(post => {
+      const div = document.createElement('div');
+      div.className = 'post';
+
+      if (post.full_picture) {
+        div.innerHTML += `<img src="${post.full_picture}" />`;
+      }
+
+      if (post.message) {
+        div.innerHTML += `<p>${post.message}</p>`;
+      }
+
+      div.innerHTML += `
+        <a href="${post.permalink_url}" target="_blank">
+          Ver no Facebook
+        </a>
+      `;
+
+      container.appendChild(div);
+    });
+  })
+  .catch(err => {
+    console.error(err);
+  });
