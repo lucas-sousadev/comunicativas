@@ -136,7 +136,6 @@ main {
 	flex-wrap: wrap;
 	gap: 30px;
 	text-align: center;
-	background-color: #F6F4F8;
 }
 .container-inicio h1 {
 	font-size: 3rem;
