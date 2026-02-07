@@ -1,4 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
+	// Detectar página atual e marcar link como ativo
+	const currentPage = window.location.pathname.split("/").pop() || "index.html";
+	const navLinks = document.querySelectorAll(".barra-de-navegacao-links a");
+	const offscreenLinks = document.querySelectorAll(".offscreen-menu a");
+
+	navLinks.forEach((link) => {
+		const href = link.getAttribute("href");
+		if (href === currentPage || (currentPage === "" && href === "index.html")) {
+			link.classList.add("active");
+		}
+	});
+
+	offscreenLinks.forEach((link) => {
+		const href = link.getAttribute("href");
+		if (href === currentPage || (currentPage === "" && href === "index.html")) {
+			link.classList.add("active");
+		}
+	});
+
 	// menu
 	const hamMenu = document.querySelector(".ham-menu");
 	const offScreenMenu = document.querySelector(".offscreen-menu");
@@ -70,12 +89,20 @@ if (wordElement) {
 	typeWord();
 }
 
-// Scroll animation header
-window.addEventListener("scroll", () => {
-	const header = document.querySelector("header");
-	if (window.scrollY > 50) {
-		header.classList.add("scrolled");
-	} else {
-		header.classList.remove("scrolled");
-	}
-});
+// Scroll animation header com throttle
+let lastScroll = 0;
+const header = document.querySelector("header");
+
+window.addEventListener(
+	"scroll",
+	() => {
+		const currentScroll = window.scrollY;
+
+		if (currentScroll > 50) {
+			header.classList.add("scrolled");
+		} else {
+			header.classList.remove("scrolled");
+		}
+	},
+	{ passive: true }
+);
